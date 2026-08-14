@@ -1,0 +1,39 @@
+package com.tecsup.app.micro.order.infrastructure.client.mapper;
+
+
+import com.tecsup.app.micro.order.domain.model.User;
+import com.tecsup.app.micro.order.infrastructure.client.dto.UserDto;
+import com.tecsup.app.micro.order.infrastructure.web.dto.CreateUserRequest;
+import com.tecsup.app.micro.order.infrastructure.web.dto.UpdateUserRequest;
+import com.tecsup.app.micro.order.infrastructure.web.dto.UserResponse;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+/**
+ * Mapper entre DTOs de presentación y modelo de dominio usando MapStruct
+ */
+@Mapper(componentModel = "spring")
+public interface UserDtoMapper {
+    
+    /**
+     * Convierte CreateUserRequest a User de dominio
+     */
+    User toDomain(CreateUserRequest request);
+    
+    /**
+     * Convierte UpdateUserRequest a User de dominio
+     */
+    User toDomain(UpdateUserRequest request);
+    
+    /**
+     * Convierte User de dominio a UserResponse
+     */
+    UserResponse toResponse(User user);
+
+    User toDomain(UserDto dto);
+    /**
+     * Convierte lista de Users a lista de UserResponse
+     */
+    List<UserResponse> toResponseList(List<User> users);
+}

@@ -1,0 +1,22 @@
+Antes de aplicar los archivos:
+
+kubectl create namespace kafka
+
+Luego:
+
+kubectl apply -f kafka/01-kafka.yaml
+kubectl apply -f kafka/02-kafka-service.yaml
+
+kubectl apply -f kafka/
+
+kubectl get pods -n kafka
+kubectl get svc -n kafka
+
+docker pull apache/kafka:4.0.0
+docker images apache/kafka
+kubectl delete pod kafka-698b6466fc-s5n7f -n kafka
+kubectl get pods -n kafka -w
+kubectl get events -n kafka --sort-by=.lastTimestamp
+
+kubectl logs -n kafka deployment/kafka
+kubectl exec -it -n kafka deployment/kafka -- /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list
